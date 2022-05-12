@@ -1,0 +1,323 @@
+Environment: macOS Monterey
+             Version 12.3.1 (21E258)
+             Google Chrome 
+             Version 101.0.4951.54 (Official Build) (arm64)
+
+
+--------------------------------------------------------------------------------------------------------
+
+LP-001: Error when Log in with invalid credentials.
+
+PRIORITY: Medium 
+              
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Account/Login
+- Type 123 in “Username” input field
+- Type 321 in “Password”  input field
+- Click “Log In” button
+
+EXP: Error message appear “There were one or more problems that prevented you from logging in: 
+                                               • The specified username or password is incorrect ”
+
+ACT: Error page appear.
+
+VIDEO: https://www.loom.com/share/6d95eddc8eb34a5e87f996e321043ebc
+
+--------------------------------------------------------------------------------------------------------
+
+HP-001: The First Name and Last Name of the employee are swapped in the table.
+
+PRIORITY: High
+
+PRECONDITIONS: 
+- Should be Logged-in as Employer.
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee” btn
+- Type Jack in “First Name” input field
+- Type Sparrow in “Last Name” input field
+- Click “Add” btn
+- Check the table with list of employees 
+
+EXP: “Jack” should be in the First Name row and “Sparrow” should be in the Last Name row
+
+ACT: “Jack” in the Last Name row and “Sparrow” in the First Name row
+
+SCREENSHOT: https://www.loom.com/i/cb2dadbddce24c1e9bb762dad6c1f386
+
+--------------------------------------------------------------------------------------------------------
+
+HP-002: Wrong modal header title in Update Employee modal window.
+
+PRIORITY: Medium 
+
+PRECONDITIONS: 
+- Should be Logged-in as Employer.
+- Should have at least one Employee in the table.
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click the edit employee btn (pencil in square)
+- Check header title in the modal window
+
+EXP: “Edit Employee” header title
+
+ACT: “Add Employee” header title
+
+SCREENSHOT: https://www.loom.com/i/f69f6daa22ac4082b5affe1784defa72
+
+--------------------------------------------------------------------------------------------------------
+
+HP-003: No error message when adding Employee with empty Last Name field
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee”
+- Type Jack in “First Name” input field
+- Click “Add” btn
+
+EXP: Error message “The LastName field is required.” should appear
+
+ACT: No error message
+
+--------------------------------------------------------------------------------------------------------
+
+HP-004: No error message when adding Employee with empty First Name field
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee”
+- Type Sparrow in “Last Name” input field
+- Click “Add” btn
+
+EXP: Error message “The FirstName field is required.” should appear
+
+ACT: No error message
+
+--------------------------------------------------------------------------------------------------------
+
+HP-005: No error message when adding a large number in “Dependants” field
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee” btn
+- Type Jack in “First Name” input field
+- Type Sparrow in “Last Name” field
+- Type 33 in “Dependents” input field
+- Click “Add” btn
+
+EXP: Error message "The field Dependants must be between 0 and 32." should appear
+
+ACT: No error message
+
+--------------------------------------------------------------------------------------------------------
+
+HP-006: No error message when adding Employee with 50+ characters in First Name
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee” btn
+- Type JackjackjaJackjackjaJackjackjaJackjackjaJackjackjac (51 characters) in “First Name” input field
+- Click “Add”
+
+EXP: Error message "The field FirstName must be a string with a maximum length of 50." should appear
+
+ACT: No error message
+
+--------------------------------------------------------------------------------------------------------
+
+HP-007: No error message when adding Employee with 50+ characters in Last Name
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee” btn
+- Type SparrowSparrowSparrowSparrowSparrowSparrowSparrowSp (51 characters) in “Last Name” input field
+- Click “Add”
+
+EXP: Error message "The field FirstName must be a string with a maximum length of 50." should appear
+
+ACT: No error message
+
+--------------------------------------------------------------------------------------------------------
+
+HP-008: Ability to create Employees with the same name and dependents.
+
+PRIORITY: High
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+
+STR:
+- Go to https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Benefits
+- Click “Add Employee” btn
+- Type Jack in “First Name” input field
+- Type Sparrow in “Last Name” input field
+- Type 2 in “Dependants” input field
+- Click “Add” btn
+
+- Click “Add Employee” btn
+- Type Jack in “First Name” input field
+- Type Sparrow in “Last Name” input field
+- Type 2 in “Dependants” input field
+- Click “Add” btn
+
+EXP: Can’t add Employee with same Name and Dependants
+
+ACT: We can add Employee with same Name and Dependants
+
+SCREENSHOT: https://www.loom.com/i/3fddee05ff5d4ebb829239036e61ecac
+
+--------------------------------------------------------------------------------------------------------
+
+HP-009: CSS responsive design issues
+
+PRIORITY: Low
+
+PRECONDITIONS:
+- Should be Logged-in as Employer
+- Should have two Employees in the table.
+
+VIDEO: https://www.loom.com/share/cdde442603804bb5965238a43fdc371e
+
+--------------------------------------------------------------------------------------------------------
+
+API
+Environment: macOS Monterey
+                    Version 12.3.1 (21E258)
+
+                     Postman
+                     Version 9.15.13
+                     UI Version: 9.15.13-ui-220412-1245
+                     Desktop Platform Version: 9.15.2 (9.15.2)
+
+API-1: Wrong response code when creating a new Employee  (API documentation)
+
+PRIORITY: Medium
+
+STR:
+- Go to https://documenter.getpostman.com/view/2314100/SWTEbbi6
+- Check POST Example Response
+
+EXP: 201 OK
+
+ACT: 200 OK
+
+SCREENSHOT: https://www.loom.com/i/2ba4796fe8f645deb0f1343b2acdf794
+
+--------------------------------------------------------------------------------------------------------
+
+API-2: “Salary” with an extra digit after the decimal point in response body
+
+PRIORITY: Medium
+
+STR:
+- Log in Postman as Employer
+- Send POST request “Add Employee” with body:
+ {
+    "firstName": "Jack",
+    "lastName": "Sparrow",
+    "dependants": 0
+}
+- Check response body
+
+EXP:  ‘’salary”: 52000
+
+ACT: “salary”: 52000.0
+
+--------------------------------------------------------------------------------------------------------
+
+API-3: “Gross” with an extra digit after the decimal point in response body
+
+PRIORITY: Medium
+
+STR:
+- Log in Postman as Employer
+- Send POST request “Add Employee” with body:
+ {
+    "firstName": "Jack",
+    "lastName": "Sparrow",
+    "dependants": 0
+}
+- Check response body
+
+EXP:  ‘’gross”: 2000
+
+ACT: “gross”: 2000.0
+
+--------------------------------------------------------------------------------------------------------
+
+API-4: The ability to change an Employee’s salary
+
+PRIORITY: High
+
+STR:
+- Log in Postman as Employer
+- Send POST request “Add Employee” with body:
+ {
+    "firstName": "Jack",
+    "lastName": "Sparrow",
+    "dependants": 0
+}
+- Send PUT request “Update Employee” with body:
+{
+    "id": "22f579eb-5a8f-4f0b-b13d-6d8a0ebe6bb0", // use id of previously added Employee 
+    "firstName": "Jack",
+    "lastName": "Rich",
+    "dependants": 0,
+    "salary": 1052000,
+    "benefitsCost": 0
+}
+- Check response body
+
+EXP: “salary”: 52000
+
+ACT: “salary”: 1052000
+
+--------------------------------------------------------------------------------------------------------
+
+API-5: Possibility to create an Employee with a <script> name
+
+PRIORITY: High
+
+STR:
+- Log in Postman as Employer
+- Send POST request “Add Employee” with body:
+ {
+    "firstName": “<script>”,
+    "lastName": “<script>”,
+    "dependants": 0
+}
+
+EXP: error
+
+API ACT: Employee created
+
+UI ACT: Employee created with empty First Name and Last Name fields 
+
+SCREENSHOT: https://www.loom.com/i/6b392b8cfb904177a404a43e3ddb6696
